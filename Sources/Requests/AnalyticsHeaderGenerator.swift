@@ -7,7 +7,7 @@
 //
 
 import Foundation
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
     import UIKit
 #elseif os(watchOS)
     import WatchKit
@@ -40,11 +40,13 @@ class AnalyticsHeaderGenerator {
             return WKInterfaceDevice.current().model
         #elseif os(OSX)
             return "macOS"
+        #elseif os(visionOS)
+            return "visionOS"
         #endif
     }()
 
     lazy var iOSVersion: String = {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
             return UIDevice.current.systemVersion
         #elseif os(watchOS)
             return WKInterfaceDevice.current().systemVersion
